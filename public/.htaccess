@@ -1,0 +1,9 @@
+#Simple rewrite rules
+#If rewriting does not work in a hosted environment uncomment the following line
+#Options +FollowSymlinks
+RewriteEngine On
+
+#Simply rewrite the path test/$dir/$file 
+RewriteRule ^test/(.*).php$ index.php?test=$1.php [QSA]
+RewriteRule ^test/(.*)$ index.php?test=$1.php [QSA]
+RewriteRule ^rewritetest/$ index.php?_rewriteTest=1
