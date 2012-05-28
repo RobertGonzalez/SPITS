@@ -4,7 +4,7 @@ SPITS
 Simple PHP Interaction Test Scripts
 
 The scripts contained in this small package are a collection of test scripts I've
-used over the years to see how PHP interactions with my web browser and my web
+used over the years to see how PHP interacts with my web browser and my web
 server. They are generally pretty simple in nature and are built to be fast and
 informative. There is very little security applied to any of these scripts and as
 such should not really be used as is, in whole or in part, in any production 
