@@ -33,8 +33,17 @@ class OutputController {
      */
     protected $htmlclose = 'views/htmlclose.php';
     
+    /**
+     * Do we use rewrite or not
+     * 
+     * @var bool
+     */
     protected static $useRewrite = false;
     
+    /**
+     * Have we checked rewrite or not
+     * @var bool
+     */
     protected static $useRewriteChecked = false;
     
     /**
@@ -80,6 +89,13 @@ class OutputController {
         }
     }
     
+    /**
+     * Checks the existence of clean urls by sending a simple cURL request to
+     * this app looking for a page defined in the .htaccess file.
+     * 
+     * @static
+     * @return bool
+     */
     public static function checkRewriteUse() {
         if (self::$useRewriteChecked) {
             return self::$useRewrite;
