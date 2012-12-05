@@ -14,10 +14,25 @@
 	<style>
 		body{font-family:Verdana;}
 		a,a:visited{color:#00c;}
-		#gohome{font-size: 8pt;margin-top:2em;}
+		table {border-collapse: collapse;}
+		table, td, th {border: solid 1px #ccc;}
+		th {background: #e1e1e1;border-color: #999;}
+		td, th {padding: 0.25em;font-size: 90%;}
+		td.algo {font-weight: bold;}
+		tr.on td {background: #f0f0f0;}
+		.gohome{font-size: 8pt;margin-top:2em;}
+		.gohome.top{margin-top: 0;margin-bottom: 2em;}
+		.small {font-size: smaller;}
 	</style>
     <?php if (!empty($importjQuery)) : ?>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <?php endif ?>
 </head>
 <body>
+<?php
+// Only show the back to home link on pages that are not the home page
+if ($_SERVER['REQUEST_URI'] != '/'): 
+?>
+<div class="gohome top"><a href="/">&laquo; Back to start</a></div>
+<?php endif; ?>
+
