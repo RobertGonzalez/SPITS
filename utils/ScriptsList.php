@@ -33,6 +33,11 @@ class ScriptsList {
         foreach ($dirs as $dir) {
             // We only want to get PHP files
             $items = glob($dir . '/*.php');
+
+            // Don't add empty diretories
+            if (empty($items)) {
+                continue;
+            }
             
             // Clean up the directory name
             $dir = basename($dir);
