@@ -13,6 +13,8 @@
 	<title><?php echo $pagetitle ?></title>
 	<style>
 		body{font-family:Verdana;}
+		a,a:visited{color:#00c;}
+		#gohome{font-size: 8pt;margin-top:2em;}
 	</style>
     <?php if (!empty($importjQuery)) : ?>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
