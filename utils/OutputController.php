@@ -1,5 +1,11 @@
 <?php
 /**
+ * Bring in the request class up front since it will be needed
+ */
+require_once 'utils/Request.php';
+require_once 'utils/Server.php';
+
+/**
  * The OutputController class is a dead simple rendering class that takes a 
  * script and imports its processed output before wrapping it in HTML and sending
  * it to the client. The $htmlopen and $htmlclose properties tell this class
@@ -101,14 +107,8 @@ class OutputController {
             return self::$useRewrite;
         }
         
-        // Send the request off to see if rewrite is working
-        $proto = 'http';
-        if (isset($_SERVER['HTTPS'])) {
-            $proto .= 's';
-        }
-        
         // Set the cURL request url
-        $url = $proto . '://' . $_SERVER['HTTP_HOST'] . '/rewritetest/';
+        $url = Server::getRoot() . 'rewritetest/';
         
         // Make the request
         $ch = curl_init($url);

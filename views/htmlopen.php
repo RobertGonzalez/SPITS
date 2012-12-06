@@ -12,7 +12,7 @@
 <head>
 	<title><?php echo $pagetitle ?></title>
 	<style>
-		body{font-family:Verdana;}
+		body{font-family:Verdana;font-size: 11pt;line-height: 15pt;}
 		a,a:visited{color:#00c;}
 		table {border-collapse: collapse;}
 		table, td, th {border: solid 1px #ccc;}
@@ -20,6 +20,7 @@
 		td, th {padding: 0.25em;font-size: 90%;}
 		td.algo {font-weight: bold;}
 		tr.on td {background: #f0f0f0;}
+		input[type="text"] {width: 200px;}
 		.gohome{font-size: 8pt;margin-top:2em;}
 		.gohome.top{margin-top: 0;margin-bottom: 2em;}
 		.small {font-size: smaller;}
@@ -29,10 +30,10 @@
     <?php endif ?>
 </head>
 <body>
-<?php
+<?php 
 // Only show the back to home link on pages that are not the home page
-if ($_SERVER['REQUEST_URI'] != '/'): 
+if (!Request::isHome()): 
 ?>
-<div class="gohome top"><a href="/">&laquo; Back to start</a></div>
+<div class="gohome top"><a href="<?php echo Server::getRoot() ?>">&laquo; Back to start</a></div>
 <?php endif; ?>
 

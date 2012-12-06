@@ -6,8 +6,8 @@
 ?>
 <?php
 // Only show the back to home link on pages that are not the home page
-if ($_SERVER['REQUEST_URI'] != '/'): 
+if (!Request::isHome()): 
 ?>
-<div class="gohome"><a href="/">&laquo; Back to start</a></div>
+<div class="gohome"><a href="<?php echo Server::getRoot() ?>">&laquo; Back to start</a></div>
 <?php endif; ?>
 </body></html>
