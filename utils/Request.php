@@ -55,4 +55,14 @@ class Request {
     public static function isHome() {
         return self::get('test') === null;
     }
+    
+    /**
+     * Checks the request method to see if it is of $type
+     * 
+     * @param  string  $type The REQUEST_METHOD
+     * @return boolean 
+     */
+    public static function is($type) {
+        return Server::getVar('REQUEST_METHOD') == strtoupper($type);
+    }
 }

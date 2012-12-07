@@ -24,10 +24,15 @@
 		.gohome{font-size: 8pt;margin-top:2em;}
 		.gohome.top{margin-top: 0;margin-bottom: 2em;}
 		.small {font-size: smaller;}
+		.error {color: #f00;}
+        #result {font-size: 14pt;font-family: "courier new", courier, monospace;}
 	</style>
-    <?php if (!empty($importjQuery)) : ?>
+    <?php if (!empty($importjQuery)) : ?> 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <?php endif ?>
+    <?php if (!empty($jsFiles) && is_array($jsFiles)): foreach ($jsFiles as $jsFile): ?> 
+  	<script type="text/javascript" src="<?php echo Server::getRoot() ?>js/<?php echo $jsFile ?>.js"></script>
+	<?php endforeach; endif; ?>
 </head>
 <body>
 <?php 
