@@ -1,9 +1,9 @@
 SPITS
 =====
 
-Simple PHP Interaction Test Scripts
+Simple PHP Interaction Tool Set
 
-The scripts contained in this small package are a collection of test scripts I've
+The scripts contained in this small package are a collection of tools that I've
 used over the years to see how PHP interacts with my web browser and my web
 server. They are generally pretty simple in nature and are built to be fast and
 informative. There is very little security applied to any of these scripts and as
