@@ -1,14 +1,38 @@
 <?php
 $pagetitle = 'Array (Un)Serializer';
 
-$i = empty($_POST['input']) ? null : $_POST['input'];
+$i = Request::post('input');
 $o = null;
-$s = !empty($_POST['serialize']);
+$s = Request::post('serialize') !== null;
 
+// If there is input...
 if ($i) {
-	$func = 'serialize';
-	if (!$s) $func = 'un' . $func;
-	$o = $func($i);
+	if ($s) {
+		// This is a serialize request, so make it 'clean' PHP by removing any
+		// variable assignments and ending semicolons. Do this after simple
+		// validation of the input
+		$p = '#(\$(.*)\s{0,1}=\s{0,1})#';
+		$input = rtrim(trim($i), ';');
+		preg_match_all($p, $input, $m);
+
+		// We really only want to handle one variable
+		if (!empty($m[0]) && count($m[0]) > 1) {
+			$o = 'IT IS KINDA DANGEROUS TO ADD MORE THAN ONE VARIABLE TO THIS TESTER. TSK TSK.';
+		} else {
+			$input = preg_replace($p, '', $input);
+			// Now add back in the variable assignment and semicolon
+			$input = '$array = ' . $input . ';';
+
+			// Dangerous, yes, but our own manipulation should have made it so that
+			// even if something malicious was brought in, this will cause it to be 
+			// not executable PHP.
+			eval($input);
+			$o = serialize($array);
+		}
+	} else {
+		$o = unserialize($i);
+		$o = '$array = ' . var_export($o, true) . ';';
+	}
 }
 ?>
 <form id="regex_form" method="post" action="">
@@ -21,6 +45,6 @@ Serialize: <input type="checkbox" name="serialize"<?php if($s): ?> checked="chec
 <?php if ($o): ?>
 <hr />
 Output:<br /><pre>
-<?php var_dump($o) ?> 
+<?php print_r($o) ?> 
 </pre>
 <?php endif; ?> 
