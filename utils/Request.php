@@ -8,10 +8,15 @@ class Request {
      * 
      * @param  string $var     The index of the GET array to check for
      * @param  mixed  $default The value to use if the requested index is not found
+     * @param  bool   $empty   If true, will check empty value, not just array var set
      * @return mixed
      */
-    public static function get($var, $default = null) {
-        return array_key_exists($var, $_GET) ? $_GET[$var] : $default;
+    public static function get($var, $default = null, $empty = false) {
+        if ($empty) {
+            return empty($_GET[$var]) ? $default : $_GET[$var];
+        } else {
+            return array_key_exists($var, $_GET) ? $_GET[$var] : $default;
+        }
     }
     
     /**
@@ -19,10 +24,15 @@ class Request {
      * 
      * @param  string $var     The index of the POST array to check for
      * @param  mixed  $default The value to use if the requested index is not found
+     * @param  bool   $empty   If true, will check empty value, not just array var set
      * @return mixed
      */
-    public static function post($var, $default = null) {
-        return array_key_exists($var, $_POST) ? $_POST[$var] : $default;
+    public static function post($var, $default = null, $empty = false) {
+        if ($empty) {
+            return empty($_POST[$var]) ? $default : $_POST[$var];
+        } else {
+            return array_key_exists($var, $_POST) ? $_POST[$var] : $default;
+        }
     }
     
     /**
@@ -30,10 +40,15 @@ class Request {
      * 
      * @param  string $var     The index of the COOKIE array to check for
      * @param  mixed  $default The value to use if the requested index is not found
+     * @param  bool   $empty   If true, will check empty value, not just array var set
      * @return mixed
      */
-    public static function cookie($var, $default = null) {
-        return array_key_exists($var, $_COOKIE) ? $_COOKIE[$var] : $default;
+    public static function cookie($var, $default = null, $empty = false) {
+        if ($empty) {
+            return empty($_COOKIE[$var]) ? $default : $_COOKIE[$var];
+        } else {
+            return array_key_exists($var, $_COOKIE) ? $_COOKIE[$var] : $default;
+        }
     }
     
     /**
@@ -41,10 +56,15 @@ class Request {
      * 
      * @param  string $var     The index of the REQUEST array to check for
      * @param  mixed  $default The value to use if the requested index is not found
+     * @param  bool   $empty   If true, will check empty value, not just array var set
      * @return mixed
      */
-    public static function has($var, $default = null) {
-        return array_key_exists($var, $_REQUEST) ? $_REQUEST[$var] : $default;
+    public static function has($var, $default = null, $empty = false) {
+        if ($empty) {
+            return empty($_REQUEST[$var]) ? $default : $_REQUEST[$var];
+        } else {
+            return array_key_exists($var, $_REQUEST) ? $_REQUEST[$var] : $default;
+        }
     }
     
     /**
