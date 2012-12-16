@@ -1,5 +1,5 @@
 <?php
-$pagetitle = 'Table Maker';
+$pagetitle = 'Simple table maker';
 
 // Setup form inputs
 $text      = Request::post('text');
@@ -52,10 +52,15 @@ if ($text) {
 		
 		// Set up an alternating class name
 		$rowclass = $rowon ? 'row-off' : 'row-on';
+
+		// Handle header rows if they are in use
+		if ($i == 0 && $headerrow) {
+			$rowclass = 'row-heading';
+		}
 		
 		// Open the table row, with alternating class names and HTML formatting...
 		$out .= '
-		<tr class="' . (($i) ? $rowclass : 'row-heading') . '">';
+		<tr class="' . $rowclass . '">';
 		
 		// Build the cell wrapper for each element in the row
 		$wrapper = $i == 0 && $headerrow ? '<th>__T__</th>' : '<td>__T__</td>';
@@ -125,7 +130,7 @@ if ($text) {
 }
 ?>
 
-	<h1 id="table-maker">Simple table maker</h1>
+	<h1 id="table-maker"><?php echo $pagetitle ?></h1>
 	<p>
 		This little script will take a tab separated collection of rows of data 
 		and make a table from it. Think of copying and pasting from a spreadsheet.
