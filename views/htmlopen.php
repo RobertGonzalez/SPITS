@@ -20,6 +20,7 @@
 		td, th {padding: 0.25em;font-size: 90%;}
 		td.algo {font-weight: bold;}
 		tr.on td {background: #f0f0f0;}
+		tr.row-on td {background: #e1e1e1;}
 		input[type="text"] {width: 200px;}
 		.gohome{font-size: 8pt;margin-top:2em;}
 		.gohome.top{margin-top: 0;margin-bottom: 2em;}

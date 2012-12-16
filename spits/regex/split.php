@@ -3,8 +3,8 @@
 $pagetitle = 'Regular Expression Split Tester';
 
 // Handle the request
-$p = empty($_POST['pattern']) ? null : $_POST['pattern'];
-$t = empty($_POST['target']) ? null : $_POST['target'];
+$p = Request::post('pattern');
+$t = Request::post('target');
 if ($p && $t) {
 	$m = preg_split($p, $t);
 }

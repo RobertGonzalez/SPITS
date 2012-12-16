@@ -3,7 +3,7 @@
 $pagetitle = 'String Hasher';
 
 /* Get the posted value of the form if there is one */
-$p = empty($_POST['p']) ? null : $_POST['p'];
+$p = Request::post('p');
 ?>
 
 <h1><?php echo $pagetitle ?></h1>

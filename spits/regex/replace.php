@@ -3,9 +3,9 @@
 $pagetitle = 'Regular Expression Replacement Tester';
 
 // Handle the request
-$p = empty($_POST['pattern']) ? null : $_POST['pattern'];
-$s = empty($_POST['subject']) ? null : $_POST['subject'];
-$r = empty($_POST['replace']) ? ''   : $_POST['replace'];
+$p = Request::post('pattern'); 
+$s = Request::post('subject'); 
+$r = Request::post('replace', '');
 $c = 0;
 $o = null;
 
