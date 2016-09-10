@@ -1,4 +1,9 @@
 <?php
+// Get the string utility class
+require_once 'utils/Serialize.php';
+use Utils\Serialize;
+
+// Set the page title
 $pagetitle = 'Array (Un)Serializer';
 
 // Add in our js files
@@ -10,6 +15,7 @@ $i = Request::post('input');
 $v = Request::post('varname', 'array', true); // Force 'array' for empty field vals
 $o = null;
 $s = Request::post('serialize') !== null;
+$u = new Serialize;
 
 // If there is input...
 if ($i) {
@@ -30,13 +36,13 @@ if ($i) {
 			$input = '$array = ' . $input . ';';
 
 			// Dangerous, yes, but our own manipulation should have made it so that
-			// even if something malicious was brought in, this will cause it to be 
+			// even if something malicious was brought in, this will cause it to be
 			// not executable PHP.
 			eval($input);
 			$o = serialize($array);
 		}
 	} else {
-		$o = unserialize($i);
+		$o = $u->getUnserialized($i);
 		$o = '$' . $v . ' = ' . var_export($o, true) . ';';
 	}
 }
@@ -54,6 +60,12 @@ Serialize: <input type="checkbox" id="serialize" name="serialize"<?php if($s): ?
 <?php if ($o): ?>
 <hr />
 Output:<br /><pre>
-<?php print_r($o) ?> 
+<?php print_r($o) ?>
 </pre>
-<?php endif; ?> 
+<?php endif; ?>
+<?php if (!empty(Serialize::$mods)): ?>
+    <hr />
+    Modifications:<br /><pre>
+    <?php print_r(Serialize::$mods) ?>
+    </pre>
+<?php endif; ?>
